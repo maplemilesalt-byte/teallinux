@@ -16,3 +16,4 @@ wpasupplicant
 parted
 e2fsprogs
 coreutils
+linux-image-amd64
