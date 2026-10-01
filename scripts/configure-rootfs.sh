@@ -26,6 +26,16 @@ UsePAM yes
 EOF
 
 mkdir -p "$ROOTFS/etc/sudoers.d"
+# Put every newly created regular user in the sudo group by default.
+if [ -f "$ROOTFS/etc/adduser.conf" ]; then
+    sed -i 's/^#*ADD_EXTRA_GROUPS=.*/ADD_EXTRA_GROUPS=1/' "$ROOTFS/etc/adduser.conf"
+    if grep -q '^EXTRA_GROUPS=' "$ROOTFS/etc/adduser.conf"; then
+        sed -i 's/^EXTRA_GROUPS=.*/EXTRA_GROUPS="sudo"/' "$ROOTFS/etc/adduser.conf"
+    else
+        printf '\nEXTRA_GROUPS="sudo"\n' >> "$ROOTFS/etc/adduser.conf"
+    fi
+fi
+
 cat > "$ROOTFS/etc/sudoers.d/teal" <<'EOF'
 # Teal Linux: sudo may run any command as root.
 %sudo ALL=(ALL:ALL) ALL
