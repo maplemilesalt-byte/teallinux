@@ -1,0 +1,12 @@
+# Core packages for the first Teal Linux server image
+systemd
+systemd-sysv
+iproute2
+iputils-ping
+openssh-server
+sudo
+ca-certificates
+curl
+vim-tiny
+procps
+kmod
