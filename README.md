@@ -1,6 +1,6 @@
 # Teal Linux
 
-**A minimal, server-first Linux distribution built for the terminal.**
+**A minimal, server-first Linux distribution based on Debian and built for the terminal.**
 
 Teal Linux is a Linux distribution designed around one simple idea: servers don't need a graphical desktop.
 
@@ -11,6 +11,7 @@ Teal Linux is:
 - **Server-first** — designed primarily for servers and infrastructure.
 - **100% terminal** — no graphical interface by default; administration happens through the CLI.
 - **Minimalist** — keep the base system small, focused, and free from unnecessary software.
+- **Debian-based** — built on the Debian ecosystem and its mature package infrastructure.
 - **Simple** — configuration and administration should be understandable and practical.
 - **Open source** — the project is developed publicly on GitHub.
 
@@ -29,13 +30,13 @@ From there, the system is managed through standard Linux tools and Teal Linux ut
 
 No desktop. No graphical installer. No unnecessary layers.
 
-Just Linux and a terminal.
+Just Debian, Teal Linux, and a terminal.
 
 ## Goals
 
 The project is currently in its early stages. Planned goals include:
 
-- Minimal bootable system
+- Minimal Debian-based system
 - Server-oriented installation
 - SSH support
 - Networking tools
