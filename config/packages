@@ -9,6 +9,8 @@ curl
 vim-tiny
 nano
 sudo
+adduser
+procps
 util-linux
 kmod
 iw
