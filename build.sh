@@ -6,6 +6,14 @@ set -euo pipefail
 SUITE="${SUITE:-stable}"
 ARCH="${ARCH:-amd64}"
 MIRROR="${MIRROR:-http://deb.debian.org/debian}"
+
+# CachyOS/Arch systems may export CPU-specific ARCH values such as
+# x86_64_v2/v3/v4. Debian amd64 is the correct target for all of them.
+case "$ARCH" in
+    x86_64|x86_64_v2|x86_64_v3|x86_64_v4)
+        ARCH="amd64"
+        ;;
+esac
 ROOTFS="${ROOTFS:-build/rootfs}"
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
