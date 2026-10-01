@@ -7,7 +7,7 @@ SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 ROOTFS="${ROOTFS:-$PROJECT_DIR/build/rootfs}"
 IMAGE="${IMAGE:-$PROJECT_DIR/build/teal.img}"
-SIZE="\${SIZE:-2G}"
+SIZE="${SIZE:-2G}"
 
 if [ "$(id -u)" -ne 0 ]; then
     echo "Error: build-image.sh must be run as root."
