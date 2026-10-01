@@ -6,8 +6,6 @@ iputils-ping
 openssh-server
 ca-certificates
 curl
-vim-tiny
-nano
 sudo
 adduser
 procps
