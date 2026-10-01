@@ -1,0 +1,6 @@
+NAME="Teal Linux"
+PRETTY_NAME="Teal Linux"
+ID=teallinux
+ID_LIKE=debian
+VERSION_ID="0.1"
+HOME_URL="https://github.com/maplemilesalt-byte/teallinux"
