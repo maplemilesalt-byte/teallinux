@@ -25,6 +25,13 @@ KbdInteractiveAuthentication no
 UsePAM yes
 EOF
 
+mkdir -p "$ROOTFS/etc/sudoers.d"
+cat > "$ROOTFS/etc/sudoers.d/teal" <<'EOF'
+# Teal Linux: sudo may run any command as root.
+%sudo ALL=(ALL:ALL) ALL
+EOF
+chmod 0440 "$ROOTFS/etc/sudoers.d/teal"
+
 mkdir -p "$ROOTFS/etc/teal"
 cp "$PROJECT_DIR/config/packages" "$ROOTFS/etc/teal/packages"
 
