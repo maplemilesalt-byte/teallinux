@@ -8,6 +8,7 @@ ca-certificates
 curl
 vim-tiny
 nano
+sudo
 util-linux
 kmod
 iw
