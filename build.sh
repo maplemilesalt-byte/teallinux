@@ -57,6 +57,31 @@ echo "    Root filesystem: $ROOTFS"
 echo "    Interface: $INSTALL_MODE"
 echo "    Editor: $EDITOR"
 
+# CachyOS ships multiple CPU architecture values in pacman-conf, while
+# debootstrap expects a single host architecture. Use its documented
+# host-architecture override temporarily when running on Arch/CachyOS.
+DEBOOTSTRAP_ARCH_FILE="/usr/share/debootstrap/arch"
+DEBOOTSTRAP_ARCH_FILE_CREATED=0
+DEBOOTSTRAP_ARCH_FILE_BACKUP=""
+cleanup_debootstrap_arch() {
+    if [ "$DEBOOTSTRAP_ARCH_FILE_CREATED" -eq 1 ]; then
+        rm -f "$DEBOOTSTRAP_ARCH_FILE"
+    elif [ -n "$DEBOOTSTRAP_ARCH_FILE_BACKUP" ]; then
+        cat "$DEBOOTSTRAP_ARCH_FILE_BACKUP" > "$DEBOOTSTRAP_ARCH_FILE"
+        rm -f "$DEBOOTSTRAP_ARCH_FILE_BACKUP"
+    fi
+}
+trap cleanup_debootstrap_arch EXIT
+
+if command -v pacman-conf >/dev/null 2>&1 && [ ! -e "$DEBOOTSTRAP_ARCH_FILE" ]; then
+    case "$(pacman-conf Architecture | head -n 1)" in
+        x86_64)
+            printf "%s\n" "amd64" > "$DEBOOTSTRAP_ARCH_FILE"
+            DEBOOTSTRAP_ARCH_FILE_CREATED=1
+            ;;
+    esac
+fi
+
 mkdir -p "$(dirname "$ROOTFS")"
 
 if [ -d "$ROOTFS" ] && [ -n "$(find "$ROOTFS" -mindepth 1 -maxdepth 1 -print -quit)" ]; then
