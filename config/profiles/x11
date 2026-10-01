@@ -1,0 +1,5 @@
+# X11 with Openbox window manager
+xorg
+xinit
+openbox
+xterm
