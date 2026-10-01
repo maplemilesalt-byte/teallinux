@@ -5,8 +5,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
-ROOTFS="\${ROOTFS:-$PROJECT_DIR/build/rootfs}"
-IMAGE="\${IMAGE:-$PROJECT_DIR/build/teal.img}"
+ROOTFS="${ROOTFS:-$PROJECT_DIR/build/rootfs}"
+IMAGE="${IMAGE:-$PROJECT_DIR/build/teal.img}"
 SIZE="\${SIZE:-2G}"
 
 if [ "$(id -u)" -ne 0 ]; then
@@ -69,7 +69,7 @@ start=2048, type=83, bootable
 EOF
 
 LOOP="$(losetup --find --show --partscan "$IMAGE")"
-PART="\${LOOP}p1"
+PART="${LOOP}p1"
 
 if [ ! -b "$PART" ]; then
     echo "Error: partition device was not created: $PART"
